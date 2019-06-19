@@ -263,170 +263,170 @@ typedef struct _DeepImage {
   int pad0;
 } DeepImage;
 
-// @deprecated { to be removed. }
-// Loads single-frame OpenEXR image. Assume EXR image contains A(single channel
-// alpha) or RGB(A) channels.
-// Application must free image data as returned by `out_rgba`
-// Result image format is: float x RGBA x width x hight
-// Returns negative value and may set error string in `err` when there's an
-// error
+/// @deprecated { to be removed. }
+/// Loads single-frame OpenEXR image. Assume EXR image contains A(single channel
+/// alpha) or RGB(A) channels.
+/// Application must free image data as returned by `out_rgba`
+/// Result image format is: float x RGBA x width x hight
+/// Returns negative value and may set error string in `err` when there's an
+/// error
 extern int LoadEXR(float **out_rgba, int *width, int *height,
                    const char *filename, const char **err);
 
-// @deprecated { to be removed. }
-// Simple wrapper API for ParseEXRHeaderFromFile.
-// checking given file is a EXR file(by just look up header)
-// @return TINYEXR_SUCCEES for EXR image, TINYEXR_ERROR_INVALID_HEADER for
-// others
+/// @deprecated { to be removed. }
+/// Simple wrapper API for ParseEXRHeaderFromFile.
+/// checking given file is a EXR file(by just look up header)
+/// @return TINYEXR_SUCCEES for EXR image, TINYEXR_ERROR_INVALID_HEADER for
+/// others
 extern int IsEXR(const char *filename);
 
-// @deprecated { to be removed. }
-// Saves single-frame OpenEXR image. Assume EXR image contains RGB(A) channels.
-// components must be 1(Grayscale), 3(RGB) or 4(RGBA).
-// Input image format is: `float x width x height`, or `float x RGB(A) x width x
-// hight`
-// Save image as fp16(HALF) format when `save_as_fp16` is positive non-zero
-// value.
-// Save image as fp32(FLOAT) format when `save_as_fp16` is 0.
-// Use ZIP compression by default.
-// Returns negative value and may set error string in `err` when there's an
-// error
+/// @deprecated { to be removed. }
+/// Saves single-frame OpenEXR image. Assume EXR image contains RGB(A) channels.
+/// components must be 1(Grayscale), 3(RGB) or 4(RGBA).
+/// Input image format is: `float x width x height`, or `float x RGB(A) x width x
+/// hight`
+/// Save image as fp16(HALF) format when `save_as_fp16` is positive non-zero
+/// value.
+/// Save image as fp32(FLOAT) format when `save_as_fp16` is 0.
+/// Use ZIP compression by default.
+/// Returns negative value and may set error string in `err` when there's an
+/// error
 extern int SaveEXR(const float *data, const int width, const int height,
                    const int components, const int save_as_fp16,
                    const char *filename, const char **err);
 
-// Initialize EXRHeader struct
+/// Initialize EXRHeader struct
 extern void InitEXRHeader(EXRHeader *exr_header);
 
-// Initialize EXRImage struct
+/// Initialize EXRImage struct
 extern void InitEXRImage(EXRImage *exr_image);
 
-// Free's internal data of EXRHeader struct
+/// Free's internal data of EXRHeader struct
 extern int FreeEXRHeader(EXRHeader *exr_header);
 
-// Free's internal data of EXRImage struct
+/// Free's internal data of EXRImage struct
 extern int FreeEXRImage(EXRImage *exr_image);
 
-// Free's error message
+/// Free's error message
 extern void FreeEXRErrorMessage(const char *msg);
 
-// Parse EXR version header of a file.
+/// Parse EXR version header of a file.
 extern int ParseEXRVersionFromFile(EXRVersion *version, const char *filename);
 
-// Parse EXR version header from memory-mapped EXR data.
+/// Parse EXR version header from memory-mapped EXR data.
 extern int ParseEXRVersionFromMemory(EXRVersion *version,
                                      const unsigned char *memory, size_t size);
 
-// Parse single-part OpenEXR header from a file and initialize `EXRHeader`.
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Parse single-part OpenEXR header from a file and initialize `EXRHeader`.
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int ParseEXRHeaderFromFile(EXRHeader *header, const EXRVersion *version,
                                   const char *filename, const char **err);
 
-// Parse single-part OpenEXR header from a memory and initialize `EXRHeader`.
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Parse single-part OpenEXR header from a memory and initialize `EXRHeader`.
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int ParseEXRHeaderFromMemory(EXRHeader *header,
                                     const EXRVersion *version,
                                     const unsigned char *memory, size_t size,
                                     const char **err);
 
-// Parse multi-part OpenEXR headers from a file and initialize `EXRHeader*`
-// array.
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Parse multi-part OpenEXR headers from a file and initialize `EXRHeader*`
+/// array.
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int ParseEXRMultipartHeaderFromFile(EXRHeader ***headers,
                                            int *num_headers,
                                            const EXRVersion *version,
                                            const char *filename,
                                            const char **err);
 
-// Parse multi-part OpenEXR headers from a memory and initialize `EXRHeader*`
-// array
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Parse multi-part OpenEXR headers from a memory and initialize `EXRHeader*`
+/// array
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int ParseEXRMultipartHeaderFromMemory(EXRHeader ***headers,
                                              int *num_headers,
                                              const EXRVersion *version,
                                              const unsigned char *memory,
                                              size_t size, const char **err);
 
-// Loads single-part OpenEXR image from a file.
-// Application must setup `ParseEXRHeaderFromFile` before calling this function.
-// Application can free EXRImage using `FreeEXRImage`
-// Returns negative value and may set error string in `err` when there's an
-// error
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Loads single-part OpenEXR image from a file.
+/// Application must setup `ParseEXRHeaderFromFile` before calling this function.
+/// Application can free EXRImage using `FreeEXRImage`
+/// Returns negative value and may set error string in `err` when there's an
+/// error
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int LoadEXRImageFromFile(EXRImage *image, const EXRHeader *header,
                                 const char *filename, const char **err);
 
-// Loads single-part OpenEXR image from a memory.
-// Application must setup `EXRHeader` with
-// `ParseEXRHeaderFromMemory` before calling this function.
-// Application can free EXRImage using `FreeEXRImage`
-// Returns negative value and may set error string in `err` when there's an
-// error
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Loads single-part OpenEXR image from a memory.
+/// Application must setup `EXRHeader` with
+/// `ParseEXRHeaderFromMemory` before calling this function.
+/// Application can free EXRImage using `FreeEXRImage`
+/// Returns negative value and may set error string in `err` when there's an
+/// error
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int LoadEXRImageFromMemory(EXRImage *image, const EXRHeader *header,
                                   const unsigned char *memory,
                                   const size_t size, const char **err);
 
-// Loads multi-part OpenEXR image from a file.
-// Application must setup `ParseEXRMultipartHeaderFromFile` before calling this
-// function.
-// Application can free EXRImage using `FreeEXRImage`
-// Returns negative value and may set error string in `err` when there's an
-// error
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Loads multi-part OpenEXR image from a file.
+/// Application must setup `ParseEXRMultipartHeaderFromFile` before calling this
+/// function.
+/// Application can free EXRImage using `FreeEXRImage`
+/// Returns negative value and may set error string in `err` when there's an
+/// error
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int LoadEXRMultipartImageFromFile(EXRImage *images,
                                          const EXRHeader **headers,
                                          unsigned int num_parts,
                                          const char *filename,
                                          const char **err);
 
-// Loads multi-part OpenEXR image from a memory.
-// Application must setup `EXRHeader*` array with
-// `ParseEXRMultipartHeaderFromMemory` before calling this function.
-// Application can free EXRImage using `FreeEXRImage`
-// Returns negative value and may set error string in `err` when there's an
-// error
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Loads multi-part OpenEXR image from a memory.
+/// Application must setup `EXRHeader*` array with
+/// `ParseEXRMultipartHeaderFromMemory` before calling this function.
+/// Application can free EXRImage using `FreeEXRImage`
+/// Returns negative value and may set error string in `err` when there's an
+/// error
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int LoadEXRMultipartImageFromMemory(EXRImage *images,
                                            const EXRHeader **headers,
                                            unsigned int num_parts,
                                            const unsigned char *memory,
                                            const size_t size, const char **err);
 
-// Saves multi-channel, single-frame OpenEXR image to a file.
-// Returns negative value and may set error string in `err` when there's an
-// error
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Saves multi-channel, single-frame OpenEXR image to a file.
+/// Returns negative value and may set error string in `err` when there's an
+/// error
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int SaveEXRImageToFile(const EXRImage *image,
                               const EXRHeader *exr_header, const char *filename,
                               const char **err);
 
-// Saves multi-channel, single-frame OpenEXR image to a memory.
-// Image is compressed using EXRImage.compression value.
-// Return the number of bytes if success.
-// Return zero and will set error string in `err` when there's an
-// error.
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Saves multi-channel, single-frame OpenEXR image to a memory.
+/// Image is compressed using EXRImage.compression value.
+/// Return the number of bytes if success.
+/// Return zero and will set error string in `err` when there's an
+/// error.
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern size_t SaveEXRImageToMemory(const EXRImage *image,
                                    const EXRHeader *exr_header,
                                    unsigned char **memory, const char **err);
 
-// Loads single-frame OpenEXR deep image.
-// Application must free memory of variables in DeepImage(image, offset_table)
-// Returns negative value and may set error string in `err` when there's an
-// error
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// Loads single-frame OpenEXR deep image.
+/// Application must free memory of variables in DeepImage(image, offset_table)
+/// Returns negative value and may set error string in `err` when there's an
+/// error
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int LoadDeepEXR(DeepImage *out_image, const char *filename,
                        const char **err);
 
@@ -444,13 +444,13 @@ extern int LoadDeepEXR(DeepImage *out_image, const char *filename,
 // char *filename,
 //                       const char **err);
 
-// For emscripten.
-// Loads single-frame OpenEXR image from memory. Assume EXR image contains
-// RGB(A) channels.
-// Returns negative value and may set error string in `err` when there's an
-// error
-// When there was an error message, Application must free `err` with
-// FreeEXRErrorMessage()
+/// For emscripten.
+/// Loads single-frame OpenEXR image from memory. Assume EXR image contains
+/// RGB(A) channels.
+/// Returns negative value and may set error string in `err` when there's an
+/// error
+/// When there was an error message, Application must free `err` with
+/// FreeEXRErrorMessage()
 extern int LoadEXRFromMemory(float **out_rgba, int *width, int *height,
                              const unsigned char *memory, size_t size,
                              const char **err);
