@@ -86,16 +86,16 @@ Current status of `tinyexr` is:
 
 ## Examples
 
-* [examples/deepview/](examples/deepview) Deep image view
-* [examples/rgbe2exr/](examples/rgbe2exr) .hdr to EXR converter
-* [examples/exr2rgbe/](examples/exr2rgbe) EXR to .hdr converter
-* [examples/ldr2exr/](examples/exr2rgbe) LDR to EXR converter
-* [examples/exr2ldr/](examples/exr2ldr) EXR to LDR converter
-* [examples/cube2longlat/](examples/cube2longlat) Cubemap to longlat(equirectangler) converter
+* [examples/deepview/](https://github.com/syoyo/tinyexr/tree/master/examples/deepview) Deep image view
+* [examples/rgbe2exr/](https://github.com/syoyo/tinyexr/tree/master/examples/rgbe2exr) .hdr to EXR converter
+* [examples/exr2rgbe/](https://github.com/syoyo/tinyexr/tree/master/examples/exr2rgbe) EXR to .hdr converter
+* [examples/ldr2exr/](https://github.com/syoyo/tinyexr/tree/master/examples/exr2rgbe) LDR to EXR converter
+* [examples/exr2ldr/](https://github.com/syoyo/tinyexr/tree/master/examples/exr2ldr) EXR to LDR converter
+* [examples/cube2longlat/](https://github.com/syoyo/tinyexr/tree/master/examples/cube2longlat) Cubemap to longlat(equirectangler) converter
 
 ## Experimental
 
-* [experimental/js/](experimental/js) JavaScript port using Emscripten
+* [experimental/js/](https://github.com/syoyo/tinyexr/tree/master/experimental/js) JavaScript port using Emscripten
 
 ## Usage
 
